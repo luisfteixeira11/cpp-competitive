@@ -5,7 +5,7 @@ int main(){
     int npart, budget, nhot, weeks, n=600000; cin >>npart>>budget>>nhot>>weeks;
 
     for (int i=0; i<nhot; i++){
-        int prcperweek, total=0; cin >> prcperweek;
+        int prcperweek; cin >> prcperweek;
         bool canAccommodate = false;
     for (int a=0; a<weeks; a++){
         int bedsperweek; cin>>bedsperweek;
