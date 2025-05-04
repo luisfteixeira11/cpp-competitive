@@ -4,8 +4,8 @@ using namespace std;
 int casom2 (int m, int n){ //no caso de um deles ser dois, a forma que melhor resulta é usando uma forma de 2x2
     int knt = 0;
     vector<vector<int>> matriz(m, vector<int> (n));
-    for (int i=0; i<m;i+=5){
-        for (int j=0; j<n;j+=5){
+    for (int i=0; i<m;i+=4){
+        for (int j=0; j<n;j+=4){
             matriz [i][j]= 1;
             knt++;
             if (j!=n-1){
@@ -31,13 +31,14 @@ int kng(int m, int n) {
         m = n;
         n = temp;
     }
-    if (m==1){
-        return n; //se é um é ele ne
+    if (m==1||n==1){
+        return max(m, n); //se é um é ele ne
     }
-    if (m==2) {
+    else if (m==2||n==2) {
         return casom2(m,n);
+    } else{
+        return ((m*n)+1)/2; //casas do cavalo sao alternadas igual ao tabuleiro de xadrez normal
     }
-    return ((m*n)+1)/2; //casas do cavalo sao alternadas igual ao tabuleiro de xadrez normal
 }
 
 int main() {

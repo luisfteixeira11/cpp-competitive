@@ -9,16 +9,25 @@ long long contdig (long long int n){
 }
 
 int main (){
-    long long n, contarluckdig; cin >> n;
+    long long n, contar=0; cin >> n;
+    string s = to_string (n);
     bool sorte = true;
-    for (long long i=0; i<contdig(n); i++){
-        if ((n%10!=7&&n%10!=4)||n==7||n==4){
+    for (long long i=0; i<s.size(); i++){
+        if (s[i]=='7'||s[i]=='4'){
+            contar++;
+        }
+    }
+    
+    string con = to_string(contar);
+    for (long long i=0; i<contdig(contar); i++){
+        if(con[i]=='7'||con[i]=='4'){
+            continue;
+        } else{
             sorte = false;
             break;
         }
-        n/=10;
-        contarluckdig++;
     }
+
     if (sorte){
         cout<<"YES"<<endl;
     } else{
