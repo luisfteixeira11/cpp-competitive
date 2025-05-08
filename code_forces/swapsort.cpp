@@ -1,35 +1,33 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main(){
-    int n,  swap=0, t; cin>>n;
+    int n,  swp=0; cin>>n;
+    long long t;
     vector <int> v (n);
-    vector <int> sortd (n);
-    vector <int> s;
+    vector <pair<int, int>> s;
     
     for(int i=0; i<n; i++){
-        cin>>t;
-        v[i] = t; 
+        cin>>v[i];
     }
-    for (int i=n-1; i>=0; i--){
-        int maior=0;
-        int ind = 0;
-        for (int j=0; j<n; j++){
-            if (v[j]>maior){
+    for (int i=n-1; i>0; i--){
+        int maior = INT_MIN;
+        int contador;
+        for (int j=0; j<=i; j++){
+            if (v[j] > maior){
                 maior = v[j];
-                ind = j;
+                contador = j;
             }
         }
-        v[ind] = -1;
-        sortd [i] = maior;
-        swap++;
-        s.push_back(ind);
-        s.push_back(i);
+        if (contador != i){
+            swp++;
+            v[contador] = v[i];
+            v[i] = maior;
+            s.push_back ({contador, i});
+        }
     }
-    cout<<swap<<endl;
-    for (int i=0; i<s.size(); i+=2){
-        cout<<s[i]<<' ';
-        cout<<s[i+1]<<endl;
+    cout<<swp<<endl;
+    for (int i=0; i<s.size(); i++){
+        cout<<s[i].first<<' '<<s[i].second << endl;
     }
 }
