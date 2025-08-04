@@ -10,18 +10,15 @@ int main(){
         cin >> x;
         vetor.push_back(x);
     }
-
-
-    for (long long i = 0; i < N; i++) {
-        long long j = i;
-        long long fase = vetor[i];
-        
-        while(fase <= vetor[j]) {
-            fase += K;
-            j = ((j+1) % N);
+    vector<long long> b (N);
+    for(int j=0; j<N; j++){
+        long long fase;
+        long long filtro = 1;
+        for (int i=1; i<=N; i++){ //pode ser um while
+            fase = vetor[filtro-1];
+            filtro = (i%N)+1;
         }
-        
-        cout << j + 1 <<" ";
+        b[j] = 
     }
     return 0;
 }

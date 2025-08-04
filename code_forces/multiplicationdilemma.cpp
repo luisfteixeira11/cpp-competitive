@@ -3,33 +3,33 @@
 #include <utility>
 using namespace std;
 
-//incompleto :/ falta acertar no teste 2
+//utiliza conceito da propriedade distributiva
 
-pair <bool, int> checar_spnumb(int a){
-    int numero_final = 0, multiplicador = 1;
-    while (to_string(a).size()>1){
-        numero_final += (a%10)*multiplicador;
-        if (a%10!=0){
-            return {false, numero_final};
-        }
-        a/=10;
-        multiplicador*=10;
+bool especial(int n){
+    int x = abs(n);
+    while(x%10==0&&(to_string(x).size()>1)){
+        x/=10;
     }
-    return {true, numero_final};
+    return (x>0 && x<10);
 }
 
 int main(){
     int t; cin>>t;
     for (int i=0; i<t; i++){
         int a, b; cin>>a>>b;
-        pair <bool, int> par_checado_a = checar_spnumb(a);
-        pair <bool, int> par_checado_b = checar_spnumb(b);
-        if (par_checado_a.first==false){
-            a -= par_checado_a.second;
-            cout<<a<<" x "<<b<<" + "<<par_checado_a.second<<" x "<<b<<endl;
-        }else if (par_checado_b.first==false){
-            b -= par_checado_b.second;
-            cout<<b<<" x "<<a<<" + "<<par_checado_b.second<<" x "<<a<<endl;
+        
+        if (especial(a)&&especial(b)){
+            cout<<a<<" x "<<b<<endl;
+        }else if (especial(a)){
+            cout<<a<<" x "<<(b/10)*10 <<" + "<<a<<" x "<<b%10<<endl;
+        }else if (especial(a)){
+            cout<<(a/10)*10<<" x "<<b <<" + "<<a%10<<" x "<<b<<endl;
+        }else{
+            int ra = a%10;
+            a -= ra;
+            int rb = b%10;
+            b-=rb;
+            cout<<a<<" x "<<b<<" + "<< ra<<" x "<<b<<" + "<< a << " x "<< rb<<" + "<<ra<< " x "<<rb<<endl;
         }
     }
     return 0;
